@@ -1,0 +1,12 @@
+type User {
+  id: ID!
+  email: String!
+  nickname: String!
+  name: String!
+  reviews: [Review!]!
+}
+
+type AuthPayload {
+  token: String!
+  user: User!
+}

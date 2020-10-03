@@ -1,0 +1,12 @@
+extend type Mutation {
+  createReview(content: String!, productId: ID!): Review!
+  updateReview(id: ID!, content: String!): Review!
+  deleteReview(id: ID!): Review!
+}
+
+type Review {
+  id: ID!
+  content: String!
+  author: User!
+  product: Product!
+}

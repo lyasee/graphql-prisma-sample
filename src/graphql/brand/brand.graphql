@@ -1,0 +1,41 @@
+extend type Query {
+  brand(id: ID!): Brand!
+  brands(
+    query: String
+    first: Int
+    last: Int
+    after: String
+    before: String
+    orderBy: BrandOrderByInput
+  ): BrandConnection
+}
+
+extend type Mutation {
+  createBrand(name: String!, image: String!): Brand!
+  updateBrand(id: ID!, name: String!, image: String!): Brand!
+  deleteBrand(id: ID!): Brand!
+}
+
+type Brand {
+  id: ID!
+  name: String!
+  image: String!
+  products: [Product!]!
+}
+
+type BrandEdge {
+  node: Brand
+  cursor: String
+}
+
+type BrandConnection {
+  pageInfo: PageInfo!
+  edges: [BrandEdge]
+}
+
+enum BrandOrderByInput {
+  name_ASC
+  name_DESC
+  createdAt_ASC
+  createdAt_DESC
+}

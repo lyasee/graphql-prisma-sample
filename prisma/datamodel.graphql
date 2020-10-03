@@ -1,0 +1,55 @@
+type Brand {
+  id: ID! @id
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+  deletedAt: DateTime
+  name: String!
+  image: String!
+  products: [Product!]!
+}
+
+type Product {
+  id: ID! @id
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+  deletedAt: DateTime
+  name: String!
+  image: String!
+  price: Int!
+  description: String!
+  officialSite: String!
+  brand: Brand!
+  reviews: [Review!]!
+}
+
+type Review {
+  id: ID! @id
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+  deletedAt: DateTime
+  content: String!
+  author: User!
+  product: Product!
+}
+
+type User {
+  id: ID! @id
+  email: String! @unique
+  password: String!
+  nickname: String!
+  name: String!
+  reviews: [Review!]!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+  deletedAt: DateTime
+}
+
+type Admin {
+  id: ID! @id
+  username: String! @unique
+  password: String!
+  name: String!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+  deletedAt: DateTime
+}

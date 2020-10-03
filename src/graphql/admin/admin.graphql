@@ -1,0 +1,19 @@
+extend type Mutation {
+  adminSignup(
+    username: String!
+    password: String!
+    name: String!
+  ): AdminAuthPayload!
+  adminLogin(username: String!, password: String!): AdminAuthPayload!
+}
+
+type Admin {
+  id: ID!
+  username: String!
+  name: String!
+}
+
+type AdminAuthPayload {
+  token: String!
+  admin: Admin!
+}

@@ -1,0 +1,62 @@
+extend type Query {
+  product(id: ID!): Product!
+  products(
+    query: String
+    first: Int
+    last: Int
+    after: String
+    before: String
+    orderBy: ProductOrderByInput
+  ): ProductConnection
+}
+
+extend type Mutation {
+  createProduct(
+    name: String!
+    image: String!
+    price: Int!
+    description: String
+    officialSite: String
+    brandId: ID!
+  ): Product!
+  updateProduct(
+    id: ID!
+    name: String
+    image: String
+    price: Int
+    description: String
+    officialSite: String
+    brandId: ID
+  ): Product!
+  deleteProduct(id: ID!): Product!
+}
+
+type Product {
+  id: ID!
+  name: String!
+  image: String!
+  price: Int!
+  descriptions: String!
+  officialSite: String!
+  brand: Brand!
+  reviews: [Review!]!
+}
+
+type ProductEdge {
+  node: Product
+  cursor: String
+}
+
+type ProductConnection {
+  pageInfo: PageInfo!
+  edges: [ProductEdge]
+}
+
+enum ProductOrderByInput {
+  name_ASC
+  name_DESC
+  price_ASC
+  price_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
